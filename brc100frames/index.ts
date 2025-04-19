@@ -1,20 +1,22 @@
 import {createAction} from "./create-action";
 import {abortAction} from "./abort-action";
 import {saveFile} from "./generator/save-file";
+import {signAction} from "./sign-action";
+import {listActions} from "./list-actions";
 
 const allFrames = {
     ...createAction,
+    ...signAction,
     ...abortAction,
+    //...listActions, // TODO: This one fails to generate, possibly an issue with ts-sdk
 }
 
 async function generate(destination: string) {
     for (const key in allFrames) {
         const obj = await allFrames[key]
 
-        const prefix = `${obj.name}-${key}`
-
-        saveFile(destination, `${prefix}-args`, obj.wire.args, obj.json.args)
-        saveFile(destination, `${prefix}-result`, obj.wire.result, obj.json.result)
+        saveFile(destination, `${key}-args`, obj.wire.args, obj.json.args)
+        saveFile(destination, `${key}-result`, obj.wire.result, obj.json.result)
     }
 }
 

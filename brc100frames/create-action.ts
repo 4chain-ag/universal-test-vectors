@@ -3,7 +3,7 @@ import { Utils } from '@bsv/sdk';
 
 
 export const createAction: Record<string, ReturnType<typeof generateWireFramesFor>> = {
-    '1-out': generateWireFramesFor(
+    'createAction-1-out': generateWireFramesFor(
         'createAction',
         {
             txid: '03895fb984362a4196bc9931629318fcbb2aeba7c6293638119ea653fa31d119',
@@ -24,7 +24,7 @@ export const createAction: Record<string, ReturnType<typeof generateWireFramesFo
             labels: ['test-label'],
         }
     ),
-    'no-signAndProcess': generateWireFramesFor(
+    'createAction-no-signAndProcess': generateWireFramesFor(
         'createAction',
         {
             signableTransaction: {
